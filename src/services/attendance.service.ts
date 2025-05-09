@@ -7,7 +7,7 @@ export class AttendanceService {
     try {
       const attendance = new Attendance({
         ...attendanceData,
-        date: attendanceData.date || new Date()
+        date: attendanceData.date || new Date(),
       });
       return await attendance.save();
     } catch (error) {
@@ -22,15 +22,15 @@ export class AttendanceService {
     try {
       const startOfDay = new Date(date);
       startOfDay.setHours(0, 0, 0, 0);
-      
+
       const endOfDay = new Date(date);
       endOfDay.setHours(23, 59, 59, 999);
 
       return await Attendance.find({
         date: {
           $gte: startOfDay,
-          $lte: endOfDay
-        }
+          $lte: endOfDay,
+        },
       }).sort({ mealType: 1, memberName: 1 });
     } catch (error) {
       throw new HttpException(400, 'Error fetching attendance');
@@ -49,15 +49,15 @@ export class AttendanceService {
     try {
       const startOfDay = new Date(date);
       startOfDay.setHours(0, 0, 0, 0);
-      
+
       const endOfDay = new Date(date);
       endOfDay.setHours(23, 59, 59, 999);
 
       const attendance = await Attendance.find({
         date: {
           $gte: startOfDay,
-          $lte: endOfDay
-        }
+          $lte: endOfDay,
+        },
       });
 
       // Get unique members
@@ -65,7 +65,7 @@ export class AttendanceService {
       const mealCounts = {
         [MealType.BREAKFAST]: 0,
         [MealType.LUNCH]: 0,
-        [MealType.DINNER]: 0
+        [MealType.DINNER]: 0,
       };
 
       // Process attendance records
@@ -80,8 +80,8 @@ export class AttendanceService {
             meals: {
               [MealType.BREAKFAST]: false,
               [MealType.LUNCH]: false,
-              [MealType.DINNER]: false
-            }
+              [MealType.DINNER]: false,
+            },
           });
         }
 
@@ -92,21 +92,22 @@ export class AttendanceService {
       return {
         totalMembers: uniqueMembers.size,
         mealCounts,
-        memberDetails: Array.from(uniqueMembers.values())
+        memberDetails: Array.from(uniqueMembers.values()),
       };
     } catch (error) {
       throw new HttpException(400, 'Error calculating detailed attendance summary');
     }
   }
 
-  public async getAttendanceSummary(date: Date): Promise<{ [key in MealType]: number }> {
+  public async getAttendanceSummary(date: Date) {
     try {
       const startOfDay = new Date(date);
       startOfDay.setHours(0, 0, 0, 0);
-      
+
       const endOfDay = new Date(date);
       endOfDay.setHours(23, 59, 59, 999);
-
-      const attendance = await Attendance.find({
-        date: {
-} 
+    } catch (error) {
+      throw new HttpException(400, 'Error fetching attendance summary');
+    }
+  }
+}

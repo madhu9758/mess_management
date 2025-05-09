@@ -1,7 +1,7 @@
 import { Service } from 'typedi';
 import { IExpense } from '@models/expense.model';
 import { ExpenseModel } from '@models/expense.model';
-import { HttpException } from '@exceptions/HttpException';
+import { HttpException } from '@/exceptions/HttpException';
 import { HistoryService } from './history.service';
 import { TransactionType } from '../models/history.model';
 

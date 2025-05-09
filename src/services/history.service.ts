@@ -1,5 +1,5 @@
 import { History, IHistory, TransactionType } from '../models/history.model';
-import { HttpException } from '../exceptions/http.exception';
+import { HttpException } from '../exceptions/HttpException';
 
 export class HistoryService {
   public async createHistoryEntry(historyData: Partial<IHistory>): Promise<IHistory> {

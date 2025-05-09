@@ -1,4 +1,4 @@
-import App from '@/app';
+import { App } from '@/app';
 import { AuthRoute } from '@routes/auth.route';
 import { UserRoute } from '@routes/users.route';
 import { IndexRoute } from '@routes/index.route';
@@ -21,7 +21,7 @@ const app = new App([
   new PaymentRoute(),
   new HistoryRoute(),
   new AttendanceRoute(),
-  new HomeRoute()
+  new HomeRoute(),
 ]);
 
 app.listen();

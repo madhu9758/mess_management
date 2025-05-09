@@ -1,7 +1,7 @@
 import { Service } from 'typedi';
 import { IMember } from '@models/member.model';
 import { MemberModel } from '@models/member.model';
-import { HttpException } from '@exceptions/HttpException';
+import { HttpException } from '@/exceptions/HttpException';
 
 @Service()
 export class MemberService {
